@@ -68,4 +68,19 @@ describe("BeverageMaker", function () {
         .withArgs(this.linkMoon.address, this.usdc.address)
     })
   })
+
+  describe("convertMultiple", function () {
+    it("reverts if lengths are different", async function () {
+      await expect(this.beverageMaker.convertMultiple([this.beverageFeeSplitExtensionMock.address, this.beverageFeeSplitExtensionMock.address], [this.bvrg.address])).to.be.revertedWith("Must be same length")
+    })
+
+    it("converts linkMoon and linkDoom fees to BVRG", async function () {
+      await this.beverageMaker.setBridge(this.linkMoon.address, this.weth.address);
+      await this.beverageMaker.setBridge(this.linkDoom.address, this.usdc.address);
+      await this.beverageMaker.setBridge(this.usdc.address, this.bvrg.address);
+
+      await this.beverageMaker.convertMultiple([this.beverageFeeSplitExtensionMock.address, this.beverageFeeSplitExtensionMock.address], [this.linkMoon.address, this.linkDoom.address]);      
+      expect(await this.bvrg.balanceOf(this.bar.address)).to.equal("6646646666726847026");
+    })
+  })
 })
