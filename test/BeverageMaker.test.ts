@@ -68,28 +68,6 @@ describe("BeverageMaker", function () {
         .withArgs(this.linkMoon.address, this.usdc.address)
     })
   })
-  
-  describe("convert", function () {
-    it("reverts if caller is not EOA", async function () {
-      await expect(this.exploiter.convert(this.beverageFeeSplitExtensionMock.address, this.bvrg.address)).to.be.revertedWith("Maker: Must use EOA")
-    })
-
-    it("converts linkMoon fees to BVRG via linkMoon > WETH > BVRG path", async function () {
-      await this.beverageMaker.setBridge(this.linkMoon.address, this.weth.address);
-
-      await this.beverageMaker.convert(this.beverageFeeSplitExtensionMock.address, this.linkMoon.address);      
-      expect(await this.bvrg.balanceOf(this.bar.address)).to.equal("3323323333363423513");
-    })
-
-    it("converts linkDoom fees to BVRG via linkDoom > USDC > BVRG", async function ()  {            
-      // set the bridges
-      await this.beverageMaker.setBridge(this.linkDoom.address, this.usdc.address);
-      await this.beverageMaker.setBridge(this.usdc.address, this.bvrg.address);
-      
-      await this.beverageMaker.convert(this.beverageFeeSplitExtensionMock.address, this.linkDoom.address);
-      expect(await this.bvrg.balanceOf(this.bar.address)).to.equal("3323323333363423513");
-    })
-  })
 
   describe("convertMultiple", function () {
     it("reverts if lengths are different", async function () {
