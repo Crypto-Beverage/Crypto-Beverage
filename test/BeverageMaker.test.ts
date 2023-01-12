@@ -39,9 +39,9 @@ describe("BeverageMaker", function () {
     await this.linkDoom.transfer(this.beverageFeeSplitExtensionMock.address, getBigNumber(10))
 
     // Create SLP for tokens
-    // await createSLP(this, "linkMoonEth", this.linkMoon, this.weth, getBigNumber(10))
-    // await createSLP(this, "bvrgEth", this.bvrg, this.weth, getBigNumber(10))
-    // await createSLP(this, "linkDoomUsdc", this.linkDoom, this.usdc, getBigNumber(10))
+    await createSLP(this, "linkMoonEth", this.linkMoon, this.weth, getBigNumber(10))
+    await createSLP(this, "bvrgEth", this.bvrg, this.weth, getBigNumber(10))
+    await createSLP(this, "linkDoomUsdc", this.linkDoom, this.usdc, getBigNumber(10))
     // await createSLP(this, "bvrgUsdc", this.bvrg, this.usdc, getBigNumber(10))
   })
 
