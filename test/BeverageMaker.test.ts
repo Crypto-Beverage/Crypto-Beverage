@@ -42,7 +42,7 @@ describe("BeverageMaker", function () {
     await createSLP(this, "linkMoonEth", this.linkMoon, this.weth, getBigNumber(10))
     await createSLP(this, "bvrgEth", this.bvrg, this.weth, getBigNumber(10))
     await createSLP(this, "linkDoomUsdc", this.linkDoom, this.usdc, getBigNumber(10))
-    await createSLP(this, "bvrgUsdc", this.bvrg, this.usdc, getBigNumber(10))
+    // await createSLP(this, "bvrgUsdc", this.bvrg, this.usdc, getBigNumber(10))
   })
 
   describe("setBridge", function () {
